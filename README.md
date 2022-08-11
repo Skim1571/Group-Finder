@@ -1,15 +1,15 @@
 # Group Finder
-## [Group Finder]()
-## [Group Finder Back End Repo]()
-
+## [Group Finder](https://github.com/Skim1571/Group-Finder)
+## [Group Finder Back End Repo](https://github.com/mahamakhan/Group-Finder-Backend)
 
 ## Date: 8/11/2022
 ![Image1](https://images.squarespace-cdn.com/content/v1/5e1f818988a3ad55be25f040/1579628831177-LCJBPP1HBKY2L6HIEHGX/cover_photo_without_slogan.jpg)
 
-### By: Johnathan R Weil [GitHub](https://github.com/JwR513) | [LinkedIn](https://www.linkedin.com/in/johnathan-weil-69b100229/)
-### By: Maham Khan [LinkedIn](https://www.linkedin.com/in/mahamakhan/)  | [Github](https://github.com/mahamakhan)
-### By: Michael Pines[GitHub](https://github.com/smyp1) | [Linkedin](https://www.linkedin.com/in/mickey-pines/) 
-### By: Steve Kim [GitHub](https://github.com/Skim1571) | [LinkedIn](https://www.linkedin.com/in/skim1571/)
+### By: 
+### Johnathan R Weil [GitHub](https://github.com/JwR513) | [LinkedIn](https://www.linkedin.com/in/johnathan-weil-69b100229/)
+### Maham Khan [LinkedIn](https://www.linkedin.com/in/mahamakhan/)  | [Github](https://github.com/mahamakhan)
+### Michael Pines[GitHub](https://github.com/smyp1) | [Linkedin](https://www.linkedin.com/in/mickey-pines/) 
+### Steve Kim [GitHub](https://github.com/Skim1571) | [LinkedIn](https://www.linkedin.com/in/skim1571/)
 
 ---
 
@@ -27,10 +27,7 @@
 
 ### **_Technologies Used_**
 
-- Postgres
-- Express
 - React
-- Node.js
 
 ---
 
