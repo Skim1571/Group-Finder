@@ -9,14 +9,13 @@ import { Register } from './pages/Register'
 import Nav from './components/nav'
 
 function App() {
-
   //  React State Section
   const [formState, setFormState] = useState()
 
+  const [group, SetGroup] = useState([])
 
   //  Functions Section
-  const handleChange = async (event) => {
-  }
+  const handleChange = async (event) => {}
 
   return (
     <div className="App">
