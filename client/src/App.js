@@ -24,7 +24,7 @@ function App() {
       const groupInfo = await axios.get(`${BASE_URL}/GROUP-ROUTES FROM-BACKEND`)
       SetGroup(groupInfo.data.groups)
     }
-    getGroups
+    getGroups()
   })
 
   return (
