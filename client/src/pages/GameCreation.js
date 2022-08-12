@@ -1,33 +1,32 @@
-export const GroupCreation = () => {
-
+export const GameCreation = () => {
   return (
-    <section className="groupCreation page">
-      <h1>Registration Form</h1>
+    <section className="gameCreation page">
+      <h1>GameCreation Form</h1>
       <form onSubmit={(event) => handleSubmit(event)}>
         <input
           type={'text'}
-          name="Title"
-          placeholder=" Enter Title"
+          name="Game Name"
+          placeholder=" Enter Game Name"
           onChange={handleChange}
           required
         />
         <input
-          type={'Date'}
-          name="Date"
-          placeholder="mm/dd/yyyy"
+          type={'text'}
+          name="image"
+          placeholder="Enter Platform"
           onChange={handleChange}
           required
         />
         <input
           type={'text'}
           name="groupsize"
-          placeholder="Enter Your group size"
+          placeholder="Enter Your Group Size"
           onChange={handleChange}
         />
         <input
           type={'text'}
           name="description"
-          placeholder="Enter Your Group Description"
+          placeholder="Enter Your Game Description"
           onChange={handleChange}
           required
         />
