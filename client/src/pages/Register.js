@@ -1,13 +1,13 @@
-export const Register = () => {
+export const Register = ({ handleChange, handleSubmit, formState }) => {
 
   return (
     <section className="register page">
       <h1>Registration Form</h1>
-      <form >
-        <input type={"text"} name="username" placeholder=" Enter Your Username" required />
-        <input type={"text"} name="email" placeholder="Enter Your Email" required />
-        <input type={"text"} name="discord" placeholder="Enter Your Discord" />
-        <input type={"text"} name="password" placeholder="Enter Your Password" required />
+      <form onSubmit={(event) => handleSubmit(event, location.state.index)}>
+        <input type={"text"} name="username" placeholder=" Enter Your Username" onChange={handleChange} required />
+        <input type={"text"} name="email" placeholder="Enter Your Email" onChange={handleChange} required />
+        <input type={"text"} name="discord" placeholder="Enter Your Discord" onChange={handleChange} />
+        <input type={"text"} name="password" placeholder="Enter Your Password" onChange={handleChange} required />
         <button>Submit</button>
       </form>
     </section>
