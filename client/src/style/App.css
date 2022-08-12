@@ -5,14 +5,31 @@
 .nav-bar{
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 100vw;
   height: 50px;
   background-color: black;
-  border-bottom: 2.5px solid white;
+    border-bottom: 2.5px solid white;
 }
-
 a{
   text-decoration: none;
   color:white;
+  margin: 0px 12.5px 0px 0px;
+}
+.home-page{
+  display: flex;
+  flex-direction: column;
+  
+}
+
+#logo-nav{
+  height: auto;
+  width: 75px;
+}
+.other-links > a:hover{
+text-decoration: underline;
+color: #d4af37;
+}
+#logo-nav:hover{
+width: 85px;
 }

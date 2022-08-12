@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom"
 
 export default function GroupCard(props){
-const navigate = useNavigate('/groupDetails')
 return(
   <div>
     <form action='/group'>
