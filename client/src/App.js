@@ -17,6 +17,7 @@ function App() {
   const [group, SetGroup] = useState([])
 
   //  Functions Section
+
   const handleChange = async (event) => {}
   // This is all theoretical subject to change when back-end becomes available
   useEffect(() => {
@@ -26,6 +27,11 @@ function App() {
     }
     getGroups
   })
+  
+    const formHandleChange = async (event) => {
+    setFormState({ ...formState, [event.target.name]: event.target.value })
+  }
+
 
   return (
     <div className="App">
@@ -37,7 +43,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/groups" element={<GroupPage />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register handleChange={formHandleChange} />} />
         </Routes>
       </main>
     </div>
