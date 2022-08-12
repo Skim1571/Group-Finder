@@ -16,6 +16,7 @@ function App() {
 
   //  Functions Section
   const handleChange = async (event) => {
+    setFormState({ ...formState, [event.target.name]: event.target.value })
   }
 
   return (
@@ -28,7 +29,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
           <Route />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register handleChange={handleChange} />} />
         </Routes>
       </main>
     </div>
