@@ -5,6 +5,8 @@ export default function Nav(){
       <Link to='/'>Home</Link>
       <Link to='/about'>About</Link>
       <Link to='/register'>Sign Up</Link>
+      <Link to='/groups'>Group Page</Link>
+  
     </nav>
     )
 }

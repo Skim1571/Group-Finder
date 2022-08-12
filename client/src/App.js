@@ -8,6 +8,7 @@ import './style/App.css'
 import { Register } from './pages/Register'
 import Nav from './components/nav'
 import GroupPage from './pages/group'
+import GroupDetails from './pages/groupDetails'
 
 function App() {
   //  React State Section
@@ -26,12 +27,11 @@ function App() {
       SetGroup(groupInfo.data.groups)
     }
     getGroups()
-  })
-  
-    const formHandleChange = async (event) => {
+  }, [])
+
+  const formHandleChange = async (event) => {
     setFormState({ ...formState, [event.target.name]: event.target.value })
   }
-
 
   return (
     <div className="App">
@@ -43,7 +43,11 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/groups" element={<GroupPage />} />
-          <Route path="/register" element={<Register handleChange={formHandleChange} />} />
+          <Route
+            path="/register"
+            element={<Register handleChange={formHandleChange} />}
+          />
+          <Route path="/group" element={<GroupDetails name />} />
         </Routes>
       </main>
     </div>
