@@ -1,7 +1,7 @@
-export const GameCreation = () => {
+export const GameCreation = ({ handleChange, handleSubmit }) => {
   return (
     <section className="gameCreation page">
-      <h1>GameCreation Form</h1>
+      <h1>Game Creation Form</h1>
       <form onSubmit={(event) => handleSubmit(event)}>
         <input
           type={'text'}
@@ -30,7 +30,7 @@ export const GameCreation = () => {
           onChange={handleChange}
           required
         />
-        <button>Submit</button>
+        <button type='submit' >Submit</button>
       </form>
     </section>
   )

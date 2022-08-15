@@ -9,15 +9,18 @@ import { Register } from './pages/Register'
 import Nav from './components/nav'
 import GroupPage from './pages/group'
 import GroupDetails from './pages/groupDetails'
+import { GameCreation } from './pages/GameCreation'
 
 function App() {
   //  React State Section
-  const [formState, setFormState] = useState()
+  const [regFormState, setRegFormState] = useState()
+  const [gameFormState, setGameFormState] = useState()
 
   // pass this down to group page to map groups and get correct data
   const [group, SetGroup] = useState([])
 
   //  Functions Section
+
   // This is all theoretical subject to change when back-end becomes available
   useEffect(() => {
     async function getGroups() {
@@ -27,13 +30,26 @@ function App() {
     getGroups()
   }, [])
 
-  const formHandleChange = async (event) => {
-    setFormState({ ...formState, [event.target.name]: event.target.value })
+  // Registration Form EventListeners
+  const regFormHandleChange = async (event) => {
+    setRegFormState({ ...regFormState, [event.target.name]: event.target.value })
   }
 
-  const formOnSubmit = async (event) => {
-
+  const regFormHandleSubmit = async (event) => {
+    event.preventDefault()
+    await axios.post(`${BASE_URL}/GROUP-ROUTES FROM-BACKEND`, regFormState)
   }
+
+  // Game Form EventListeners
+  const gameFormHandleChange = async (event) => {
+    setGameFormState({ ...gameFormState, [event.target.name]: event.target.value })
+  }
+
+  const gameFormHandleSubmit = async (event) => {
+    event.preventDefault()
+    await axios.post(`${BASE_URL}/GROUP-ROUTES FROM-BACKEND`, gameFormState)
+  }
+
 
   return (
     <div className="App">
@@ -47,9 +63,13 @@ function App() {
           <Route path="/groups" element={<GroupPage />} />
           <Route
             path="/register"
-            element={<Register handleChange={formHandleChange} />}
+            element={<Register handleChange={regFormHandleChange} onSubmit={regFormHandleSubmit} />}
           />
           <Route path="/group" element={<GroupDetails name />} />
+          <Route
+            path="/creategame"
+            element={<GameCreation handleChange={gameFormHandleChange} onSubmit={gameFormHandleSubmit} />}
+          />
         </Routes>
       </main>
     </div>

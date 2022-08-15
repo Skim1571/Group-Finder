@@ -1,4 +1,4 @@
-export const Register = ({ handleChange, handleSubmit, formState }) => {
+export const Register = ({ handleChange, handleSubmit }) => {
   return (
     <section className="register page">
       <h1>Registration Form</h1>
@@ -30,7 +30,7 @@ export const Register = ({ handleChange, handleSubmit, formState }) => {
           onChange={handleChange}
           required
         />
-        <button>Submit</button>
+        <button type="submit">Submit</button>
       </form>
     </section>
   )
