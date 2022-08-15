@@ -18,8 +18,6 @@ function App() {
   const [group, SetGroup] = useState([])
 
   //  Functions Section
-
-  const handleChange = async (event) => {}
   // This is all theoretical subject to change when back-end becomes available
   useEffect(() => {
     async function getGroups() {
@@ -31,6 +29,10 @@ function App() {
 
   const formHandleChange = async (event) => {
     setFormState({ ...formState, [event.target.name]: event.target.value })
+  }
+
+  const formOnSubmit = async (event) => {
+
   }
 
   return (
