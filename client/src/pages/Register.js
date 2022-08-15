@@ -28,7 +28,7 @@ export const Register = ({ handleChange, onSubmit, formState }) => {
         />
         <input
           type={'text'}
-          name="password"
+          name="passcode"
           value={formState.passcode}
           placeholder="Input Your Password"
           onChange={handleChange}

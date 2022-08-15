@@ -10,25 +10,26 @@ import Nav from './components/nav'
 import GroupPage from './pages/group'
 import GroupDetails from './pages/groupDetails'
 import { GameCreation } from './pages/GameCreation'
+import { RegisterPlayer } from './services/Auth'
 
 function App() {
   // initial States
   const initialRegFormState = {
-    username: "",
-    email: "",
-    discord: "",
-    passcode: ""
+    username: '',
+    email: '',
+    discord: '',
+    passcode: ''
   }
   const initialGameFormState = {
-    gameName: "",
-    image: "",
-    groupSize: "",
-    description: ""
+    gameName: '',
+    image: '',
+    groupSize: '',
+    description: ''
   }
 
   const initialPlayerFormState = {
-    username: "",
-    passcode: ""
+    username: '',
+    passcode: ''
   }
 
   //  React State Section
@@ -42,31 +43,36 @@ function App() {
 
   //  Functions Section
   let navigate = useNavigate()
-  // This is all theoretical subject to change when back-end becomes available
+
   useEffect(() => {
     async function getGroups() {
       const groupInfo = await axios.get(`${BASE_URL}/api/groups`)
       SetGroup(groupInfo.data.groups)
-      console.log(group)
     }
     getGroups()
   }, [])
 
   // Registration Form EventListeners
   const regFormHandleChange = async (event) => {
-    setRegFormState({ ...regFormState, [event.target.name]: event.target.value })
+    setRegFormState({
+      ...regFormState,
+      [event.target.name]: event.target.value
+    })
   }
 
   const regFormHandleSubmit = async (event) => {
     event.preventDefault()
-    await axios.post(`${BASE_URL}/api/players`, regFormState)
+    await RegisterPlayer(regFormState)
     setRegFormState(initialRegFormState)
     navigate(`/`)
   }
 
   // Game Form EventListeners
   const gameFormHandleChange = async (event) => {
-    setGameFormState({ ...gameFormState, [event.target.name]: event.target.value })
+    setGameFormState({
+      ...gameFormState,
+      [event.target.name]: event.target.value
+    })
   }
 
   const gameFormHandleSubmit = async (event) => {
@@ -75,9 +81,6 @@ function App() {
     setGameFormState()
   }
 
-
-
-
   return (
     <div className="App">
       <header className="App-header">
@@ -85,21 +88,41 @@ function App() {
       </header>
       <main>
         <Routes>
-          <Route index element={<Home
-            isLoggedIn={isLoggedIn}
-            setIsLoggedIn={setIsLoggedIn}
-            setPlayer={setPlayer}
-            player={player} />} />
+          <Route
+            index
+            element={
+              <Home
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+                setPlayer={setPlayer}
+                player={player}
+              />
+            }
+          />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/groups" element={<GroupPage />} />
+
           <Route
             path="/register"
-            element={<Register formState={regFormState} handleChange={regFormHandleChange} onSubmit={regFormHandleSubmit} />}
+            element={
+              <Register
+                formState={regFormState}
+                handleChange={regFormHandleChange}
+                onSubmit={regFormHandleSubmit}
+              />
+            }
           />
           <Route path="/group" element={<GroupDetails name />} />
+
           <Route
             path="/creategame"
-            element={<GameCreation formState={gameFormState} handleChange={gameFormHandleChange} onSubmit={gameFormHandleSubmit} />}
+            element={
+              <GameCreation
+                formState={gameFormState}
+                handleChange={gameFormHandleChange}
+                onSubmit={gameFormHandleSubmit}
+              />
+            }
           />
         </Routes>
       </main>
