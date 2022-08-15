@@ -1,26 +1,29 @@
-export const GameCreation = ({ handleChange, handleSubmit }) => {
+export const GameCreation = ({ handleChange, onSubmit, formState }) => {
   return (
     <section className="gameCreation page">
       <h1>Game Creation Form</h1>
-      <form onSubmit={(event) => handleSubmit(event)}>
+      <form onSubmit={(event) => onSubmit(event)}>
         <input
           type={'text'}
           name="Game Name"
-          placeholder=" Enter Game Name"
+          value={formState.gameName}
+          placeholder="Enter Game Name"
           onChange={handleChange}
           required
         />
         <input
           type={'text'}
           name="image"
-          placeholder="Enter Platform"
+          value={formState.image}
+          placeholder="Enter Image Link"
           onChange={handleChange}
           required
         />
         <input
           type={'text'}
-          name="groupsize"
-          placeholder="Enter Your Group Size"
+          name="platform"
+          value={formState.groupSize}
+          placeholder="Enter Your Platform"
           onChange={handleChange}
         />
         <input

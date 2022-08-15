@@ -1,12 +1,34 @@
+import { SignInPlayer } from '../services/Auth'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-export default function SignIn(){
-  return(
-<section>
-  <form action='signin route'>
-    <input type="text" placeholder="Username"/>
-    <input type="text"  placeholder="Password"/>
-    <button type="submit">Log In</button>
-  </form>
-</section>
+export default function SignIn({ player, setPlayer, setIsLoggedIn }) {
+
+  let navigate = useNavigate()
+  // this form is so we have a local state where we can house the form information
+  const [formValues, setFormValues] = useState({ username: '', passcode: '' })
+  const signInFormHandleChange = async (event) => {
+    setFormValues({ ...formValues, [event.target.name]: event.target.value })
+  }
+
+  const signInFormHandleSubmit = async (event) => {
+    event.preventDefault()
+    // the payload is capturing the newly bcrypted token
+    const payload = await SignInPlayer(formValues)
+    setFormValues({ username: '', passcode: '' })
+    // setting the App state with the payload so we can check session later
+    setPlayer(payload)
+    setIsLoggedIn(true)
+    navigate('/')
+  }
+
+  return (
+    <section>
+      <form onSubmit={signInFormHandleSubmit}>
+        <input type="text" value={formValues.username} placeholder="Username" onChange={signInFormHandleChange} />
+        <input type="text" value={formValues.passcode} placeholder="Password" onChange={signInFormHandleChange} />
+        <button type="submit">Log In</button>
+      </form>
+    </section>
   )
 }

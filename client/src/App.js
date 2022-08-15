@@ -12,20 +12,42 @@ import GroupDetails from './pages/groupDetails'
 import { GameCreation } from './pages/GameCreation'
 
 function App() {
-  //  React State Section
-  const [regFormState, setRegFormState] = useState()
-  const [gameFormState, setGameFormState] = useState()
+  // initial States
+  const initialRegFormState = {
+    username: "",
+    email: "",
+    discord: "",
+    passcode: ""
+  }
+  const initialGameFormState = {
+    gameName: "",
+    image: "",
+    groupSize: "",
+    description: ""
+  }
 
+  const initialPlayerFormState = {
+    username: "",
+    passcode: ""
+  }
+
+  //  React State Section
+  const [regFormState, setRegFormState] = useState(initialRegFormState)
+  const [gameFormState, setGameFormState] = useState(initialGameFormState)
   // pass this down to group page to map groups and get correct data
   const [group, SetGroup] = useState([])
+  // Authentication States
+  const [player, setPlayer] = useState(initialPlayerFormState)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   //  Functions Section
-
+  let navigate = useNavigate()
   // This is all theoretical subject to change when back-end becomes available
   useEffect(() => {
     async function getGroups() {
-      const groupInfo = await axios.get(`${BASE_URL}/GROUP-ROUTES FROM-BACKEND`)
+      const groupInfo = await axios.get(`${BASE_URL}/api/groups`)
       SetGroup(groupInfo.data.groups)
+      console.log(group)
     }
     getGroups()
   }, [])
@@ -37,7 +59,9 @@ function App() {
 
   const regFormHandleSubmit = async (event) => {
     event.preventDefault()
-    await axios.post(`${BASE_URL}/GROUP-ROUTES FROM-BACKEND`, regFormState)
+    await axios.post(`${BASE_URL}/api/players`, regFormState)
+    setRegFormState(initialRegFormState)
+    navigate(`/`)
   }
 
   // Game Form EventListeners
@@ -47,8 +71,11 @@ function App() {
 
   const gameFormHandleSubmit = async (event) => {
     event.preventDefault()
-    await axios.post(`${BASE_URL}/GROUP-ROUTES FROM-BACKEND`, gameFormState)
+    let res = await axios.post(`${BASE_URL}/api/games`, gameFormState)
+    setGameFormState()
   }
+
+
 
 
   return (
@@ -58,17 +85,21 @@ function App() {
       </header>
       <main>
         <Routes>
-          <Route index element={<Home />} />
+          <Route index element={<Home
+            isLoggedIn={isLoggedIn}
+            setIsLoggedIn={setIsLoggedIn}
+            setPlayer={setPlayer}
+            player={player} />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/groups" element={<GroupPage />} />
           <Route
             path="/register"
-            element={<Register handleChange={regFormHandleChange} onSubmit={regFormHandleSubmit} />}
+            element={<Register formState={regFormState} handleChange={regFormHandleChange} onSubmit={regFormHandleSubmit} />}
           />
           <Route path="/group" element={<GroupDetails name />} />
           <Route
             path="/creategame"
-            element={<GameCreation handleChange={gameFormHandleChange} onSubmit={gameFormHandleSubmit} />}
+            element={<GameCreation formState={gameFormState} handleChange={gameFormHandleChange} onSubmit={gameFormHandleSubmit} />}
           />
         </Routes>
       </main>
