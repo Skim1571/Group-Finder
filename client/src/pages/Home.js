@@ -1,3 +1,4 @@
+import SignIn from '../components/signin'
 export const Home = () => {
   return (
     <section className="home-page">
@@ -9,6 +10,8 @@ export const Home = () => {
         />
         <h1>Welcome to Group Finder</h1>
         <h1>This is where the login component will be placed</h1>
+        {/* remove this when conditional rendering is set up */}
+        <SignIn />
       </div>
     </section>
   )
