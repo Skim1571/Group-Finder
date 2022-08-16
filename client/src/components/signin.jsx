@@ -6,7 +6,7 @@ export default function SignIn({ player, setPlayer, setIsLoggedIn }) {
 
   let navigate = useNavigate()
   // this form is so we have a local state where we can house the form information
-  const [formValues, setFormValues] = useState({ username: '', passcode: '' })
+  const [formValues, setFormValues] = useState({ email: '', passcode: '' })
   const signInFormHandleChange = async (event) => {
     setFormValues({ ...formValues, [event.target.name]: event.target.value })
   }
@@ -15,18 +15,18 @@ export default function SignIn({ player, setPlayer, setIsLoggedIn }) {
     event.preventDefault()
     // the payload is capturing the newly bcrypted token
     const payload = await SignInPlayer(formValues)
-    setFormValues({ username: '', passcode: '' })
+    setFormValues({ email: '', passcode: '' })
     // setting the App state with the payload so we can check session later
     setPlayer(payload)
     setIsLoggedIn(true)
-    navigate('/')
+    navigate('/groups')
   }
 
   return (
     <section>
       <form onSubmit={signInFormHandleSubmit}>
-        <input type="text" value={formValues.username} placeholder="Username" onChange={signInFormHandleChange} />
-        <input type="text" value={formValues.passcode} placeholder="Password" onChange={signInFormHandleChange} />
+        <input type="text" name='email' value={formValues.email} placeholder="Email" onChange={signInFormHandleChange} />
+        <input type="text" name='passcode' value={formValues.passcode} placeholder="Password" onChange={signInFormHandleChange} />
         <button type="submit">Log In</button>
       </form>
     </section>

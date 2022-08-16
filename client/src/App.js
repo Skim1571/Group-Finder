@@ -62,8 +62,13 @@ function App() {
 
   const regFormHandleSubmit = async (event) => {
     event.preventDefault()
-    await RegisterPlayer(regFormState)
-    setRegFormState(initialRegFormState)
+    await RegisterPlayer({
+      username: regFormState.username,
+      email: regFormState.email,
+      discord: regFormState.discord,
+      password: regFormState.passcode
+    })
+    // setRegFormState(initialRegFormState)
     navigate(`/`)
   }
 
