@@ -1,9 +1,9 @@
-export const GroupCreation = () => {
+export const GroupCreation = ({ handleChange, onSubmit }) => {
 
   return (
     <section className="groupCreation page">
-      <h1>Registration Form</h1>
-      <form onSubmit={(event) => handleSubmit(event)}>
+      <h1>Group Creation Form</h1>
+      <form onSubmit={(event) => onSubmit(event)}>
         <input
           type={'text'}
           name="Title"

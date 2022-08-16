@@ -9,8 +9,10 @@ import { Register } from './pages/Register'
 import Nav from './components/nav'
 import GroupPage from './pages/group'
 import GroupDetails from './pages/groupDetails'
+import { GroupCreation } from './pages/GroupCreation'
 import { GameCreation } from './pages/GameCreation'
 import { RegisterPlayer } from './services/Auth'
+import { CheckSession } from './services/Auth'
 
 function App() {
   // initial States
@@ -27,30 +29,33 @@ function App() {
     description: ''
   }
 
-  const initialPlayerFormState = {
-    username: '',
-    passcode: ''
+  const initialGroupFormState = {
+    title: '',
+    date: '',
+    groupsize: 0,
+    description: ''
   }
 
   //  React State Section
   const [regFormState, setRegFormState] = useState(initialRegFormState)
   const [gameFormState, setGameFormState] = useState(initialGameFormState)
+  const [groupFormState, setGroupFormState] = useState(initialGroupFormState)
   // pass this down to group page to map groups and get correct data
   const [group, SetGroup] = useState([])
   // Authentication States
-  const [player, setPlayer] = useState(initialPlayerFormState)
+  const [player, setPlayer] = useState(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   //  Functions Section
   let navigate = useNavigate()
 
-  useEffect(() => {
-    async function getGroups() {
-      const groupInfo = await axios.get(`${BASE_URL}/api/groups`)
-      SetGroup(groupInfo.data.groups)
-    }
-    getGroups()
-  }, [])
+  // useEffect(() => {
+  //   async function getGroups() {
+  //     const groupInfo = await axios.get(`${BASE_URL}/api/groups`)
+  //     SetGroup(groupInfo.data.groups)
+  //   }
+  //   getGroups()
+  // }, [])
 
   // Registration Form EventListeners
   const regFormHandleChange = async (event) => {
@@ -83,13 +88,53 @@ function App() {
   const gameFormHandleSubmit = async (event) => {
     event.preventDefault()
     let res = await axios.post(`${BASE_URL}/api/games`, gameFormState)
-    setGameFormState()
+    setGameFormState(res)
   }
+
+  // Group Form EventListeners
+  const groupFormHandleChange = async (event) => {
+    setGroupFormState({
+      ...groupFormState,
+      [event.target.name]: event.target.value
+    })
+  }
+
+  const groupFormHandleSubmit = async (event) => {
+    event.preventDefault()
+    let res = await axios.post(`${BASE_URL}/api/games`, groupFormState)
+    setGroupFormState(res)
+  }
+
+  const checkToken = async () => {
+    const playerSession = await CheckSession()
+    setPlayer(playerSession)
+    setIsLoggedIn(true)
+    //If a token exists, sends token to localStorage to persist logged in user
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      checkToken()
+    }
+  }, [])
+
+  const handleLogOut = () => {
+    //Reset all auth related state and clear localStorage
+    setPlayer(null)
+    setIsLoggedIn(false)
+    localStorage.clear()
+  }
+
 
   return (
     <div className="App">
       <header className="App-header">
-        <Nav />
+        <Nav
+          isLoggedIn={isLoggedIn}
+          player={player}
+          handleLogOut={handleLogOut}
+        />
       </header>
       <main>
         <Routes>
@@ -129,6 +174,10 @@ function App() {
               />
             }
           />
+          <Route path="/groupcreation" element={<GroupCreation
+            handleChange={groupFormHandleChange}
+            onSubmit={groupFormHandleSubmit}
+          />} />
         </Routes>
       </main>
     </div>
