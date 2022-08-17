@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
-export default function SignIn({ player, setPlayer, setIsLoggedIn }) {
+export default function SignIn({ setRender, player, setPlayer, setIsLoggedIn }) {
 
   let navigate = useNavigate()
   // this form is so we have a local state where we can house the form information
@@ -19,6 +19,7 @@ export default function SignIn({ player, setPlayer, setIsLoggedIn }) {
     setFormValues({ email: '', password: '' })
     // setting the App state with the payload so we can check session later
     setPlayer(payload)
+    setRender(true)
     setIsLoggedIn(true)
     // navigate('/groups')
   }

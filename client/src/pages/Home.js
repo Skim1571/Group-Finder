@@ -1,5 +1,5 @@
 import SignIn from '../components/signin'
-export const Home = ({ player, setPlayer, isLoggedIn, setIsLoggedIn }) => {
+export const Home = ({ setRender, player, setPlayer, isLoggedIn, setIsLoggedIn }) => {
   let notSignedIn = (
     <section className="home page">
       <div>
@@ -9,6 +9,7 @@ export const Home = ({ player, setPlayer, isLoggedIn, setIsLoggedIn }) => {
           id="logo"
         />
         <SignIn
+          setRender={setRender}
           setIsLoggedIn={setIsLoggedIn}
           setPlayer={setPlayer}
           player={player}

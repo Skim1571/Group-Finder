@@ -34,11 +34,14 @@ export default function GroupDetails(props) {
     event.preventDefault()
     let res = await axios.put(`${BASE_URL}/api/groups/${group_Id}`, updatedGroup)
     setUpdatedGroup(res)
+    props.setRender(true)
+    props.setSelectedGroup(updatedGroup)
     setIsEdit(false)
   }
 
   const onDelete = async (event) => {
     let res = await axios.delete(`${BASE_URL}/api/groups/${group_Id}`)
+    props.setRender(true)
     navigate('/groups')
   }
 
@@ -56,7 +59,7 @@ export default function GroupDetails(props) {
       <button onClick={onDelete}>Delete</button>
       <h1> {props.selectedGroup.title}</h1>
       <h2>PlayerCount: {props.players}</h2>
-      <h4>Date: {props.selectedGroup.date}</h4>
+      <h4>Date: {props.selectedGroup.date.substring(0, 10)}</h4>
       <p>Description: {props.selectedGroup.description}</p>
     </div>
   )

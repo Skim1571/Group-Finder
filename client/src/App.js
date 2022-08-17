@@ -45,8 +45,8 @@ function App() {
   // pass this down to group page to map groups and get correct data
   const [groups, setGroups] = useState([])
   const [selectedGroup, setSelectedGroup] = useState()
+  const [render, setRender] = useState(false)
   // Authentication States
-
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   //  Functions Section
@@ -58,7 +58,7 @@ function App() {
       setGroups(groupInfo.data)
     }
     getGroups()
-  }, [])
+  }, [render])
 
   // Registration Form EventListeners
   const regFormHandleChange = async (event) => {
@@ -92,7 +92,6 @@ function App() {
     event.preventDefault()
     let res = await axios.post(`${BASE_URL}/api/games`, gameFormState)
     setGameFormState(res)
-
   }
 
   // Group Form EventListeners
@@ -109,7 +108,8 @@ function App() {
     event.preventDefault()
     let res = await axios.post(`${BASE_URL}/api/groups`, groupFormState)
     setGroupFormState(res)
-    navigate('/')
+    setRender(true)
+    navigate('/groups')
   }
 
   const checkToken = async () => {
@@ -127,7 +127,7 @@ function App() {
     if (token) {
       checkToken()
     }
-  }, [])
+  }, [isLoggedIn])
 
   const handleLogOut = () => {
     //Reset all auth related state and clear localStorage
@@ -156,6 +156,7 @@ function App() {
             index
             element={
               <Home
+                setRender={setRender}
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn={setIsLoggedIn}
                 setPlayer={setPlayer}
@@ -175,7 +176,7 @@ function App() {
               />
             }
           />
-          <Route path="/groups/:group_Id" element={<GroupDetails selectedGroup={selectedGroup} />} />
+          <Route path="/groups/:group_Id" element={<GroupDetails setSelectedGroup={setSelectedGroup} setRender={setRender} selectedGroup={selectedGroup} />} />
 
           <Route
             path="/creategame"

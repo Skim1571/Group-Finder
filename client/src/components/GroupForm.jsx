@@ -20,8 +20,8 @@ export const GroupForm = ({ updatedGroup, handleChange, onSubmit }) => {
           type={'date'}
           name="date"
           format='mm/dd/yyyy'
-          value={updatedGroup.date}
-          placeholder={updatedGroup.date}
+          value={updatedGroup.date.substring(0, 10)}
+          placeholder={updatedGroup.date.substring(0, 10)}
           onChange={handleChange}
         />
         <input
