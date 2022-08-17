@@ -43,7 +43,8 @@ function App() {
   const [gameFormState, setGameFormState] = useState(initialGameFormState)
   const [groupFormState, setGroupFormState] = useState(initialGroupFormState)
   // pass this down to group page to map groups and get correct data
-  const [groups, SetGroups] = useState([])
+  const [groups, setGroups] = useState([])
+  const [selectedGroup, setSelectedGroup] = useState()
   // Authentication States
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -54,7 +55,8 @@ function App() {
   useEffect(() => {
     async function getGroups() {
       const groupInfo = await axios.get(`${BASE_URL}/api/groups`)
-      SetGroups(groupInfo.data.groups)
+      console.log(groupInfo)
+      setGroups(groupInfo.data)
     }
     getGroups()
   }, [])
@@ -135,6 +137,12 @@ function App() {
     localStorage.clear()
   }
 
+  const chooseGroup = (selected) => {
+    setSelectedGroup(selected)
+    console.log('selected', selectedGroup)
+    navigate(`/groups/${selected.id}`)
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -158,7 +166,7 @@ function App() {
             }
           />
           <Route path="/about" element={<AboutUs />} />
-          <Route path="/groups" element={<GroupPage groups={groups} />} />
+          <Route path="/groups" element={<GroupPage groups={groups} chooseGroup={chooseGroup} />} />
           <Route
             path="/register"
             element={
@@ -169,7 +177,7 @@ function App() {
               />
             }
           />
-          <Route path="/group" element={<GroupDetails name />} />
+          <Route path="/groups/:id" element={<GroupDetails selectedGroup={selectedGroup} />} />
 
           <Route
             path="/creategame"

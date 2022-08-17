@@ -1,10 +1,10 @@
 export default function GroupDetails(props) {
   return (
     <div className="groupdetails page">
-      <h1>GroupName: {props.name}</h1>
+      <h1> {props.selectedGroup.title}</h1>
       <h2>PlayerCount: {props.players}</h2>
-      <h4>Date: {props.date}</h4>
-      <p>Description: {props.description}</p>
+      <h4>Date: {props.selectedGroup.date}</h4>
+      <p>Description: {props.selectedGroup.description}</p>
     </div>
   )
 }
