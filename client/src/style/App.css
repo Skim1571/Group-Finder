@@ -1,9 +1,10 @@
-*{
+* {
   font-family: 'Orbitron', sans-serif;
 }
+
 body {
   background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20210817/pngtree-sci-fi-light-effect-dot-dark-pattern-black-gold-abstract-simple-image_760048.jpg");
-  background-size:cover;
+  background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
   color: rgb(230, 179, 50);
@@ -12,11 +13,13 @@ body {
 .App {
   text-align: center;
 }
+
 img {
   border-radius: 12px;
   opacity: 0.7;
   filter: contrast(200%);
 }
+
 .nav-bar {
   display: flex;
   flex-direction: row;
@@ -26,6 +29,7 @@ img {
   background-color: rgba(0, 0, 0, 0.822);
   border-bottom: 2.5px solid rgb(238, 185, 40);
 }
+
 /* p{
   margin-left: 500px;
   margin-right: 500px;
@@ -40,8 +44,9 @@ a {
   display: flex;
   flex-direction: column;
 }
- h1{
-font-size: 50px;
+
+h1 {
+  font-size: 50px;
 }
 
 #logo-nav {
@@ -66,6 +71,7 @@ input {
   margin-top: 40px;
   color: #d4af37;
 }
+
 form {
   padding: 1em;
   display: flex;
@@ -76,36 +82,41 @@ form {
   margin: 40px auto;
   border-radius: 40%;
 }
+
 button {
-background-color: #070707f3;
-border:2px solid #d1ab2fee;
-color: #d1ab2fee;
-border-radius: 10%;
-padding: 0.4em;
-margin-top: 30px;
+  background-color: #070707f3;
+  border: 2px solid #d1ab2fee;
+  color: #d1ab2fee;
+  border-radius: 10%;
+  padding: 0.4em;
+  margin-top: 30px;
 }
 
-.group button h1{
- 
-font-size: 20px;
+.group button h1 {
+
+  font-size: 20px;
 }
+
 .group {
   display: flex;
   flex-direction: column;
 }
-.groupdetails{
+
+.groupdetails {
   margin-top: 200px;
 }
 
-.about{
+.about {
   margin-top: 300px;
 }
+
 ::placeholder {
   color: #f8dc80;
 }
-.groupCreation select  {
-background-color: transparent;
-color: #d4af37;
-cursor: inherit;
-border: 1px solid darkgoldenrod
+
+.groupCreation select {
+  background-color: transparent;
+  color: #d4af37;
+  cursor: inherit;
+  border: 1px solid darkgoldenrod
 }
