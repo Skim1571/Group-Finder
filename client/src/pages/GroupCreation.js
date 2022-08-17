@@ -1,4 +1,18 @@
+import axios from "axios"
+import { useEffect, useState } from "react"
+import { BASE_URL } from "../globals"
+
 export const GroupCreation = ({ handleChange, onSubmit }) => {
+  const [game, setGame] = useState()
+
+  useEffect(() => {
+    async function getGames() {
+      const gameInfo = await axios.get(`${BASE_URL}/api/games`)
+      setGame(gameInfo.data)
+    }
+    getGames()
+  }, [])
+
   return (
     <section className="groupCreation page">
       <h1>Group Creation Form</h1>

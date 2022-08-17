@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function AboutUs() {
   return (
-    <div>
+    <div className='about page'>
       <h1> About</h1>
       <h2>Johnathan Weil, Maham Khan, Michael Pines, Steve Kim</h2>
       <p>
