@@ -42,7 +42,6 @@ export default function Nav({ isLoggedIn, player, handleLogOut }) {
 
     </nav>
   )
-  console.log('nav auth', isLoggedIn)
 
   return (
     <div>
