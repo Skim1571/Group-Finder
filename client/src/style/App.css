@@ -109,3 +109,23 @@ color: #d4af37;
 cursor: inherit;
 border: 1px solid darkgoldenrod
 }
+
+ .active{
+  text-shadow: 2px 2px 5px rgb(255, 132, 31), 0 0 25px rgb(247, 177, 73);
+}
+input[type="date"] { 
+  background: transparent;
+  color: darkgoldenrod;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 2px;
+  opacity: 1;
+  filter: invert(1);
+}
+
+#logo-nav .active{
+  box-shadow: 20px 50px rgb(255, 132, 31);
+}
