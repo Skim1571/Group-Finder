@@ -1,5 +1,4 @@
 export const GroupCreation = ({ handleChange, onSubmit }) => {
-
   return (
     <section className="groupCreation page">
       <h1>Group Creation Form</h1>
@@ -28,6 +27,13 @@ export const GroupCreation = ({ handleChange, onSubmit }) => {
           type={'text'}
           name="description"
           placeholder="Enter Your Group Description"
+          onChange={handleChange}
+          required
+        />
+        <input
+          type={'text'}
+          name="gameId"
+          placeholder="Enter Your gameId"
           onChange={handleChange}
           required
         />

@@ -1,6 +1,7 @@
 import { SignInPlayer } from '../services/Auth'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export default function SignIn({ player, setPlayer, setIsLoggedIn }) {
 
@@ -19,9 +20,8 @@ export default function SignIn({ player, setPlayer, setIsLoggedIn }) {
     // setting the App state with the payload so we can check session later
     setPlayer(payload)
     setIsLoggedIn(true)
-    navigate('/groups')
+    // navigate('/groups')
   }
-
   return (
     <section>
       <form onSubmit={signInFormHandleSubmit}>

@@ -15,6 +15,7 @@ import { RegisterPlayer } from './services/Auth'
 import { CheckSession } from './services/Auth'
 
 function App() {
+  const [player, setPlayer] = useState(null)
   // initial States
   const initialRegFormState = {
     username: '',
@@ -33,7 +34,8 @@ function App() {
     title: '',
     date: '',
     groupsize: 0,
-    description: ''
+    description: '',
+    gameId: null
   }
 
   //  React State Section
@@ -43,7 +45,7 @@ function App() {
   // pass this down to group page to map groups and get correct data
   const [group, SetGroup] = useState([])
   // Authentication States
-  const [player, setPlayer] = useState(null)
+
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   //  Functions Section
@@ -101,7 +103,7 @@ function App() {
 
   const groupFormHandleSubmit = async (event) => {
     event.preventDefault()
-    let res = await axios.post(`${BASE_URL}/api/games`, groupFormState)
+    let res = await axios.post(`${BASE_URL}/api/groups`, groupFormState)
     setGroupFormState(res)
   }
 
@@ -125,7 +127,6 @@ function App() {
     setIsLoggedIn(false)
     localStorage.clear()
   }
-
 
   return (
     <div className="App">
@@ -174,10 +175,15 @@ function App() {
               />
             }
           />
-          <Route path="/groupcreation" element={<GroupCreation
-            handleChange={groupFormHandleChange}
-            onSubmit={groupFormHandleSubmit}
-          />} />
+          <Route
+            path="/groupcreation"
+            element={
+              <GroupCreation
+                handleChange={groupFormHandleChange}
+                onSubmit={groupFormHandleSubmit}
+              />
+            }
+          />
         </Routes>
       </main>
     </div>
