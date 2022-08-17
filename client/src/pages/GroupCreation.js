@@ -13,6 +13,18 @@ export const GroupCreation = ({ handleChange, onSubmit }) => {
     getGames()
   }, [])
 
+  let optionList
+  if (games) {
+    console.log(games)
+    optionList =
+      <select defaultValue="" name="gameId" onChange={handleChange}>
+        <option value="" disabled hidden>Choose Game</option>
+        {games.map((game) => {
+          <option value={game.id} name="gamename" key={game.id}>{game.gameName}</option>
+        })}
+      </select>
+  }
+
 
 
 
@@ -25,6 +37,7 @@ export const GroupCreation = ({ handleChange, onSubmit }) => {
           <option value="1">Dota 2</option>
           <option value="2">Counter Strike</option>
         </select>
+        {/* {optionList} */}
         <input
           type={'text'}
           name="title"

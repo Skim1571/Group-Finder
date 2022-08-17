@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { NavLink, Link } from "react-router-dom"
 
 export default function Nav({ isLoggedIn, player, handleLogOut }) {
 
@@ -15,9 +15,9 @@ export default function Nav({ isLoggedIn, player, handleLogOut }) {
           </Link>
         </div>
         <div>
-          <Link to='/about'>About</Link>
-          <Link to='/groupcreation/'>Group Creation</Link>
-          <Link to='/groups'>Group Page</Link>
+          <NavLink to='/about'>About</NavLink>
+          <NavLink to='/groupcreation/'>Group Creation</NavLink>
+          <NavLink to='/groups'>Group Page</NavLink>
           <Link onClick={handleLogOut} to="/">
             Sign Out
           </Link>
@@ -35,9 +35,9 @@ export default function Nav({ isLoggedIn, player, handleLogOut }) {
         id="logo-nav"
       /></Link>
       <div className="other-links">
-        <Link to='/about'>About</Link>
-        <Link to='/register'>Sign Up</Link>
-        <Link to='/groups'>Group Page</Link>
+        <NavLink to='/about'>About</NavLink>
+        <NavLink to='/register'>Sign Up</NavLink>
+        <NavLink to='/groups'>Group Page</NavLink>
       </div>
 
     </nav>

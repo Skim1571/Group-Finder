@@ -1,17 +1,16 @@
 
 
-export default function GroupCard(props){
-return(
-  <div>
-    <form action='/group'>
-      <button type="submit">
-    <h1>Game: {props.game}</h1>
-    <h1>Activity: We can have this pulled from group creation form</h1>
-    <h3>group size: {props.size}</h3>
-    <h3>date: {props.date}</h3>
-    <p>Description:</p>
-    </button>
-    </form>
-  </div>
-)
+export default function GroupCard({ group }) {
+  return (
+    <div>
+      <form action='/group'>
+        <button type="submit">
+          <h1>Game: {group.title}</h1>
+          <h3>group size: {group.groupSize}</h3>
+          <h3>date: {group.date}</h3>
+          <p>Description:{group.description}</p>
+        </button>
+      </form>
+    </div>
+  )
 }
