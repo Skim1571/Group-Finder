@@ -26,10 +26,10 @@ img {
   background-color: rgba(0, 0, 0, 0.822);
   border-bottom: 2.5px solid rgb(238, 185, 40);
 }
-p{
+/* p{
   margin-left: 500px;
   margin-right: 500px;
-}
+} */
 a {
   text-decoration: none;
   color: #d4af37;
@@ -64,6 +64,7 @@ input {
   background-color: rgba(0, 0, 0, 0.651);
   padding: 0.5em;
   margin-top: 40px;
+  color: #d4af37;
 }
 form {
   padding: 1em;
@@ -98,4 +99,13 @@ font-size: 20px;
 
 .about{
   margin-top: 300px;
+}
+::placeholder {
+  color: #f8dc80;
+}
+.groupCreation select  {
+background-color: transparent;
+color: #d4af37;
+cursor: inherit;
+border: 1px solid darkgoldenrod
 }
