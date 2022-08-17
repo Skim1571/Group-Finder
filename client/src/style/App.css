@@ -126,6 +126,3 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(1);
 }
 
-#logo-nav .active{
-  box-shadow: 20px 50px rgb(255, 132, 31);
-}
