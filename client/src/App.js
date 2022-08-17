@@ -55,14 +55,14 @@ function App() {
   useEffect(() => {
     async function getGroups() {
       const groupInfo = await axios.get(`${BASE_URL}/api/groups`)
-      setGroups(groupInfo.data)
+      await setGroups(groupInfo.data)
     }
     getGroups()
   }, [render])
 
   // Registration Form EventListeners
   const regFormHandleChange = async (event) => {
-    setRegFormState({
+    await setRegFormState({
       ...regFormState,
       [event.target.name]: event.target.value
     })
@@ -82,7 +82,7 @@ function App() {
 
   // Game Form EventListeners
   const gameFormHandleChange = async (event) => {
-    setGameFormState({
+    await setGameFormState({
       ...gameFormState,
       [event.target.name]: event.target.value
     })
@@ -91,13 +91,13 @@ function App() {
   const gameFormHandleSubmit = async (event) => {
     event.preventDefault()
     let res = await axios.post(`${BASE_URL}/api/games`, gameFormState)
-    setGameFormState(res)
+    await setGameFormState(res)
   }
 
   // Group Form EventListeners
   const groupFormHandleChange = async (event) => {
     let playerId = player.id
-    setGroupFormState({
+    await setGroupFormState({
       playerId,
       ...groupFormState,
       [event.target.name]: event.target.value
@@ -107,18 +107,18 @@ function App() {
   const groupFormHandleSubmit = async (event) => {
     event.preventDefault()
     let res = await axios.post(`${BASE_URL}/api/groups`, groupFormState)
-    setGroupFormState(res)
+    await setGroupFormState(res)
     await setRender(true)
     navigate('/groups')
   }
 
   const checkToken = async () => {
     const playerSession = await CheckSession()
-    setPlayer(playerSession)
-    setGroupFormState({
+    await setPlayer(playerSession)
+    await setGroupFormState({
       ...groupFormState
     })
-    setIsLoggedIn(true)
+    await setIsLoggedIn(true)
     //If a token exists, sends token to localStorage to persist logged in user
   }
 

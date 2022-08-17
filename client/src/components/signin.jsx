@@ -16,11 +16,11 @@ export default function SignIn({ setRender, player, setPlayer, setIsLoggedIn }) 
     event.preventDefault()
     // the payload is capturing the newly bcrypted token
     const payload = await SignInPlayer(formValues)
-    setFormValues({ email: '', password: '' })
+    await setFormValues({ email: '', password: '' })
     // setting the App state with the payload so we can check session later
-    setPlayer(payload)
-    setRender(true)
-    setIsLoggedIn(true)
+    await setPlayer(payload)
+    await setRender(true)
+    await setIsLoggedIn(true)
     // navigate('/groups')
   }
   return (
