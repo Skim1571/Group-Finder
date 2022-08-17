@@ -43,7 +43,7 @@ function App() {
   const [gameFormState, setGameFormState] = useState(initialGameFormState)
   const [groupFormState, setGroupFormState] = useState(initialGroupFormState)
   // pass this down to group page to map groups and get correct data
-  const [group, SetGroup] = useState([])
+  const [groups, SetGroups] = useState([])
   // Authentication States
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -51,13 +51,13 @@ function App() {
   //  Functions Section
   let navigate = useNavigate()
 
-  // useEffect(() => {
-  //   async function getGroups() {
-  //     const groupInfo = await axios.get(`${BASE_URL}/api/groups`)
-  //     SetGroup(groupInfo.data.groups)
-  //   }
-  //   getGroups()
-  // }, [])
+  useEffect(() => {
+    async function getGroups() {
+      const groupInfo = await axios.get(`${BASE_URL}/api/groups`)
+      SetGroups(groupInfo.data.groups)
+    }
+    getGroups()
+  }, [])
 
   // Registration Form EventListeners
   const regFormHandleChange = async (event) => {
@@ -91,11 +91,14 @@ function App() {
     event.preventDefault()
     let res = await axios.post(`${BASE_URL}/api/games`, gameFormState)
     setGameFormState(res)
+
   }
 
   // Group Form EventListeners
   const groupFormHandleChange = async (event) => {
+    let playerId = player.id
     setGroupFormState({
+      playerId,
       ...groupFormState,
       [event.target.name]: event.target.value
     })
@@ -105,11 +108,15 @@ function App() {
     event.preventDefault()
     let res = await axios.post(`${BASE_URL}/api/groups`, groupFormState)
     setGroupFormState(res)
+    navigate('/')
   }
 
   const checkToken = async () => {
     const playerSession = await CheckSession()
     setPlayer(playerSession)
+    setGroupFormState({
+      ...groupFormState
+    })
     setIsLoggedIn(true)
     //If a token exists, sends token to localStorage to persist logged in user
   }
@@ -151,8 +158,7 @@ function App() {
             }
           />
           <Route path="/about" element={<AboutUs />} />
-          <Route path="/groups" element={<GroupPage />} />
-
+          <Route path="/groups" element={<GroupPage groups={groups} />} />
           <Route
             path="/register"
             element={

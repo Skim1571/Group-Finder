@@ -25,7 +25,6 @@ export const CheckSession = async () => {
   try {
     // Checks if the current token if it exists is valid
     const res = await Client.get('/api/players/session')
-    console.log(res)
     return res.data
   } catch (error) {
     throw error
