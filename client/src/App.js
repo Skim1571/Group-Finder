@@ -108,7 +108,7 @@ function App() {
     event.preventDefault()
     let res = await axios.post(`${BASE_URL}/api/groups`, groupFormState)
     setGroupFormState(res)
-    setRender(true)
+    await setRender(true)
     navigate('/groups')
   }
 

@@ -34,14 +34,14 @@ export default function GroupDetails(props) {
     event.preventDefault()
     let res = await axios.put(`${BASE_URL}/api/groups/${group_Id}`, updatedGroup)
     setUpdatedGroup(res)
-    props.setRender(true)
+    await props.setRender(true)
     props.setSelectedGroup(updatedGroup)
     setIsEdit(false)
   }
 
   const onDelete = async (event) => {
     let res = await axios.delete(`${BASE_URL}/api/groups/${group_Id}`)
-    props.setRender(true)
+    await props.setRender(true)
     navigate('/groups')
   }
 
