@@ -55,7 +55,6 @@ function App() {
   useEffect(() => {
     async function getGroups() {
       const groupInfo = await axios.get(`${BASE_URL}/api/groups`)
-      console.log(groupInfo)
       setGroups(groupInfo.data)
     }
     getGroups()
@@ -139,7 +138,6 @@ function App() {
 
   const chooseGroup = (selected) => {
     setSelectedGroup(selected)
-    console.log('selected', selectedGroup)
     navigate(`/groups/${selected.id}`)
   }
 
@@ -177,7 +175,7 @@ function App() {
               />
             }
           />
-          <Route path="/groups/:id" element={<GroupDetails selectedGroup={selectedGroup} />} />
+          <Route path="/groups/:group_Id" element={<GroupDetails selectedGroup={selectedGroup} />} />
 
           <Route
             path="/creategame"
