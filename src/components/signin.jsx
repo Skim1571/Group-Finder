@@ -1,7 +1,7 @@
 import { SignInPlayer } from '../services/Auth'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+
 
 export default function SignIn({ setRender, player, setPlayer, setIsLoggedIn }) {
 
@@ -21,7 +21,7 @@ export default function SignIn({ setRender, player, setPlayer, setIsLoggedIn }) 
     await setPlayer(payload)
     await setRender(true)
     await setIsLoggedIn(true)
-    // navigate('/groups')
+    navigate('/groups')
   }
   return (
     <section>
