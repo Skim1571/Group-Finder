@@ -1,9 +1,18 @@
-export default function GroupCard({ chooseGroup, group }) {
+export default function GroupCard({ chooseGroup, group, selectedGroup }) {
+
 
   const handleSubmit = (event) => {
     event.preventDefault()
     chooseGroup(group)
   }
+
+  useEffect(()=>{
+    const gameImage = async() =>{
+     let res = await axios.get(`${BASE_URL}/api/games/image/${selectedGroup.gameId}`)
+     console.log(res)
+    }
+    gameImage()
+  },[selectedGroup.gameId])
 
   return (
     <div>
