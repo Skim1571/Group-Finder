@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { GroupForm } from "../components/GroupForm"
 import axios from "axios"
 import { BASE_URL } from "../globals"
@@ -52,17 +52,79 @@ export default function GroupDetails(props) {
     </div>
   )
 
+  // <-------------------------------------------------->
+  const [unitInfo, setUnitInfo] = useState()
+  const [unitPlayers, setUnitPlayers] = useState()
+  const [usernames, setUsernames] = useState()
+
+  useEffect(() => {
+    const getUnits = async () => {
+      let res = await axios.get(`${BASE_URL}/api/units/groups/${group_Id}`)
+      setUnitPlayers(res.data)
+    }
+    getUnits()
+  }, [unitInfo])
+
+
+
+  useEffect(() => {
+    const filterName = () => {
+      let array = []
+      if (unitPlayers) {
+        unitPlayers.forEach(obj => {
+          array.push(obj.playerId)
+        })
+        array.map(async (playerId) => {
+          let res = await axios.get(`${BASE_URL}/api/players/name/${playerId}`)
+          console.log(res.data.username)
+          let newRes = res.data.username
+          setUsernames([usernames, newRes])
+          console.log(usernames)
+        })
+      }
+    }
+    filterName()
+  }, [unitPlayers])
+
+
+
+  const joinGroup = async () => {
+    console.log('playerID information here:', props.player.id)
+    let information = {
+      playerId: props.player.id,
+      groupId: group_Id
+    }
+    let res = await axios.post(`${BASE_URL}/api/units`, information)
+    setUnitInfo(res.data)
+  }
+
+  const leaveGroup = async () => {
+    await axios.delete(`${BASE_URL}/api/units/${group_Id}`)
+  }
+  // let nameList
+  // if (usernames) {
+  //   nameList =
+  //     <ol>
+  //       {usernames.map((name, index) => {
+  //         <li key={index}>{name}</li>
+  //       })}
+  //     </ol>
+  // }
 
   const defaultPage = (
     <div className="groupdetails page">
       <button onClick={handleClick}>Edit</button>
       <button onClick={onDelete}>Delete</button>
       <h1> {props.selectedGroup.title}</h1>
-      <h2>PlayerCount: {props.players}</h2>
+      <h2>Group Size: {props.groupSize}</h2>
       <h4>Date: {props.selectedGroup.date.substring(0, 10)}</h4>
       <p>Description: {props.selectedGroup.description}</p>
+      {/* {nameList} */}
+      <button onClick={joinGroup}>+Join Group+</button>
+      <button onClick={leaveGroup}>-Leave Group-</button>
     </div>
   )
+
 
 
   return (

@@ -91,13 +91,13 @@ function App() {
   const gameFormHandleSubmit = async (event) => {
     event.preventDefault()
     let res = await axios.post(`${BASE_URL}/api/games`, gameFormState)
-    await setGameFormState(res)
+    setGameFormState(initialGameFormState)
   }
 
   // Group Form EventListeners
   const groupFormHandleChange = async (event) => {
     let playerId = player.id
-    await setGroupFormState({
+    setGroupFormState({
       playerId,
       ...groupFormState,
       [event.target.name]: event.target.value
@@ -107,18 +107,18 @@ function App() {
   const groupFormHandleSubmit = async (event) => {
     event.preventDefault()
     let res = await axios.post(`${BASE_URL}/api/groups`, groupFormState)
-    await setGroupFormState(res)
-    await setRender(true)
+    setGroupFormState(res)
+    setRender(true)
     navigate('/groups')
   }
 
   const checkToken = async () => {
     const playerSession = await CheckSession()
-    await setPlayer(playerSession)
-    await setGroupFormState({
+    setPlayer(playerSession)
+    setGroupFormState({
       ...groupFormState
     })
-    await setIsLoggedIn(true)
+    setIsLoggedIn(true)
     //If a token exists, sends token to localStorage to persist logged in user
   }
 
@@ -176,7 +176,7 @@ function App() {
               />
             }
           />
-          <Route path="/groups/:group_Id" element={<GroupDetails setSelectedGroup={setSelectedGroup} setRender={setRender} selectedGroup={selectedGroup} />} />
+          <Route path="/groups/:group_Id" element={<GroupDetails player={player} setSelectedGroup={setSelectedGroup} setRender={setRender} selectedGroup={selectedGroup} />} />
 
           <Route
             path="/creategame"
