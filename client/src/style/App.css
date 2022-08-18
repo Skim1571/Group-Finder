@@ -69,6 +69,11 @@ input {
   padding: 0.5em;
   margin-top: 40px;
   color: #d4af37;
+  animation: slideInFromBottom ease 3s;
+}
+@keyframes slideInFromBottom {
+  from { transform: translateY(100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 form {
@@ -136,4 +141,37 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .group button{
 width:300px;
+animation: slideInFromBottom ease 3s;
+}
+@keyframes slideInFromBottom {
+  from { transform: translateY(100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+* {
+  animation: fadeInAnimation ease 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+   }
+}
+
+header {
+  animation: 1s ease-out 0s 1 slideInLeft;
+  
+} 
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
