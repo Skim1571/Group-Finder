@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react"
-import { GroupForm } from "../components/GroupForm"
-import axios from "axios"
-import { BASE_URL } from "../globals"
-import { useNavigate, useParams } from "react-router-dom"
-
+import { useState, useEffect } from 'react'
+import { GroupForm } from '../components/GroupForm'
+import axios from 'axios'
+import { BASE_URL } from '../globals'
+import { useNavigate, useParams } from 'react-router-dom'
+import Players from '../components/players'
 
 export default function GroupDetails(props) {
   let navigate = useNavigate()
@@ -32,9 +32,12 @@ export default function GroupDetails(props) {
 
   const onSubmit = async (event) => {
     event.preventDefault()
-    let res = await axios.put(`${BASE_URL}/api/groups/${group_Id}`, updatedGroup)
+    let res = await axios.put(
+      `${BASE_URL}/api/groups/${group_Id}`,
+      updatedGroup
+    )
     setUpdatedGroup(res)
-    await props.setRender(true)
+    props.setRender(true)
     props.setSelectedGroup(updatedGroup)
     setIsEdit(false)
   }
@@ -48,45 +51,45 @@ export default function GroupDetails(props) {
   let editPage = (
     <div>
       <h1>{props.selectedGroup.title}</h1>
-      <GroupForm handleChange={handleChange} onSubmit={onSubmit} updatedGroup={updatedGroup} />
+      <GroupForm
+        handleChange={handleChange}
+        onSubmit={onSubmit}
+        updatedGroup={updatedGroup}
+      />
     </div>
   )
 
   // <-------------------------------------------------->
   const [unitInfo, setUnitInfo] = useState()
   const [unitPlayers, setUnitPlayers] = useState()
-  const [usernames, setUsernames] = useState()
+  const [usernames, setUsernames] = useState([])
 
   useEffect(() => {
     const getUnits = async () => {
       let res = await axios.get(`${BASE_URL}/api/units/groups/${group_Id}`)
+      console.log(res.data)
       setUnitPlayers(res.data)
     }
     getUnits()
   }, [unitInfo])
 
-
-
   useEffect(() => {
-    const filterName = () => {
-      let array = []
+    let playerNames = []
+    let array = []
+    const filterName = async () => {
       if (unitPlayers) {
-        unitPlayers.forEach(obj => {
+        await unitPlayers.forEach((obj) => {
           array.push(obj.playerId)
         })
         array.map(async (playerId) => {
           let res = await axios.get(`${BASE_URL}/api/players/name/${playerId}`)
-          console.log(res.data.username)
-          let newRes = res.data.username
-          setUsernames([usernames, newRes])
-          console.log(usernames)
+          playerNames.push(res.data.username)
+          setUsernames(playerNames)
         })
       }
     }
     filterName()
   }, [unitPlayers])
-
-
 
   const joinGroup = async () => {
     console.log('playerID information here:', props.player.id)
@@ -101,35 +104,24 @@ export default function GroupDetails(props) {
   const leaveGroup = async () => {
     await axios.delete(`${BASE_URL}/api/units/${group_Id}`)
   }
-  // let nameList
-  // if (usernames) {
-  //   nameList =
-  //     <ol>
-  //       {usernames.map((name, index) => {
-  //         <li key={index}>{name}</li>
-  //       })}
-  //     </ol>
-  // }
 
   const defaultPage = (
     <div className="groupdetails page">
       <button onClick={handleClick}>Edit</button>
       <button onClick={onDelete}>Delete</button>
       <h1> {props.selectedGroup.title}</h1>
-      <h2>Group Size: {props.groupSize}</h2>
+      <h2>Group Size: {props.selectedGroup.groupSize}</h2>
       <h4>Date: {props.selectedGroup.date.substring(0, 10)}</h4>
       <p>Description: {props.selectedGroup.description}</p>
-      {/* {nameList} */}
+
+      <Players usernames={usernames} />
+
       <button onClick={joinGroup}>+Join Group+</button>
       <button onClick={leaveGroup}>-Leave Group-</button>
     </div>
   )
 
-
-
   return (
-    <div className="groupdetails page">
-      {!isEdit ? defaultPage : editPage}
-    </div>
+    <div className="groupdetails page">{!isEdit ? defaultPage : editPage}</div>
   )
 }

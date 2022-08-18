@@ -55,7 +55,8 @@ function App() {
   useEffect(() => {
     async function getGroups() {
       const groupInfo = await axios.get(`${BASE_URL}/api/groups`)
-      await setGroups(groupInfo.data)
+      console.log(groupInfo.data)
+      setGroups(groupInfo.data)
     }
     getGroups()
   }, [render])
@@ -107,7 +108,11 @@ function App() {
   const groupFormHandleSubmit = async (event) => {
     event.preventDefault()
     let res = await axios.post(`${BASE_URL}/api/groups`, groupFormState)
+    console.log(res)
     setGroupFormState(res)
+    const postvar = { playerId: player.id, groupId: res.data.id }
+    let newRes = await axios.post(`${BASE_URL}/api/units`, postvar)
+    console.log(newRes)
     setRender(true)
     navigate('/groups')
   }
@@ -165,7 +170,10 @@ function App() {
             }
           />
           <Route path="/about" element={<AboutUs />} />
-          <Route path="/groups" element={<GroupPage groups={groups} chooseGroup={chooseGroup} />} />
+          <Route
+            path="/groups"
+            element={<GroupPage groups={groups} chooseGroup={chooseGroup} />}
+          />
           <Route
             path="/register"
             element={
@@ -176,7 +184,17 @@ function App() {
               />
             }
           />
-          <Route path="/groups/:group_Id" element={<GroupDetails player={player} setSelectedGroup={setSelectedGroup} setRender={setRender} selectedGroup={selectedGroup} />} />
+          <Route
+            path="/groups/:group_Id"
+            element={
+              <GroupDetails
+                player={player}
+                setSelectedGroup={setSelectedGroup}
+                setRender={setRender}
+                selectedGroup={selectedGroup}
+              />
+            }
+          />
 
           <Route
             path="/creategame"

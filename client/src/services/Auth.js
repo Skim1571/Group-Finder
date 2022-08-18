@@ -1,4 +1,3 @@
-import axios from 'axios'
 import Client from './api'
 
 export const SignInPlayer = async (data) => {
