@@ -5,8 +5,6 @@ export const GameCreation = ({ handleChange, onSubmit, formState }) => {
       <form onSubmit={(event) => onSubmit(event)}>
         <input
           type={'text'}
-          name="Game Name"
-          value={formState.gameName}
           placeholder="Enter Game Name"
           onChange={handleChange}
           required
@@ -14,7 +12,6 @@ export const GameCreation = ({ handleChange, onSubmit, formState }) => {
         <input
           type={'text'}
           name="image"
-          value={formState.image}
           placeholder="Enter Image Link"
           onChange={handleChange}
           required
@@ -22,7 +19,6 @@ export const GameCreation = ({ handleChange, onSubmit, formState }) => {
         <input
           type={'text'}
           name="platform"
-          value={formState.groupSize}
           placeholder="Enter Your Platform"
           onChange={handleChange}
         />
