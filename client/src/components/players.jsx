@@ -6,7 +6,7 @@ export default function Players({usernames}){
         {usernames.map((name, index) => (
           <p key={index}>{name}</p>
         ))}
-    </div>
+      </div>
   )
   }
 }

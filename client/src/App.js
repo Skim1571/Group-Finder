@@ -55,7 +55,6 @@ function App() {
   useEffect(() => {
     async function getGroups() {
       const groupInfo = await axios.get(`${BASE_URL}/api/groups`)
-      console.log(groupInfo.data)
       setGroups(groupInfo.data)
     }
     getGroups()
