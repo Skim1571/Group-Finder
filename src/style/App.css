@@ -30,10 +30,10 @@ img {
   background-color: rgba(0, 0, 0, 0.822);
   border-bottom: 2.5px solid rgb(238, 185, 40);
 }
-p{
+/* p{
   padding-left: 500px;
   padding-right: 500px;
-}
+} */
 a {
   text-decoration: none;
   color: #d4af37;
@@ -70,12 +70,9 @@ input {
   padding: 0.5em;
   margin-top: 40px;
   color: #d4af37;
-  animation: slideInFromBottom ease 3s;
+ 
 }
-@keyframes slideInFromBottom {
-  from { transform: translateY(100px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
+
 
 form {
   padding: 1em;
@@ -86,6 +83,11 @@ form {
   width: 40em;
   margin: 40px auto;
   border-radius: 40%;
+  animation: slideInFromBottom ease 3s;
+}
+@keyframes slideInFromBottom {
+  from { transform: translateY(100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 button {
@@ -94,7 +96,7 @@ button {
   color: #d1ab2fee;
   border-radius: 10%;
   padding: 0.4em;
-  margin-top: 30px 20px 0 20px;
+  margin-top: 30px 20px 20px 20px;
 }
 
 .group button h1 {
