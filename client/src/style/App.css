@@ -133,3 +133,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 1;
   filter: invert(1);
 }
+
+.group button{
+width:300px;
+}
