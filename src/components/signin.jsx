@@ -21,7 +21,7 @@ export default function SignIn({ setRender, player, setPlayer, setIsLoggedIn }) 
     await setPlayer(payload)
     await setRender(true)
     await setIsLoggedIn(true)
-    // navigate('/groups')
+    navigate('/groups')
   }
   return (
     <section>

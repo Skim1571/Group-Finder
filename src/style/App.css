@@ -195,6 +195,7 @@ header {
     transform: translateX(0);
   }
 }
-.poster{
-  opacity: .9;
+
+.poster {
+  opacity: .7;
 }

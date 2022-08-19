@@ -37,7 +37,7 @@ export default function GroupDetails(props) {
       updatedGroup
     )
     setUpdatedGroup(res)
-    props.setRender(true)
+    await props.setRender(true)
     props.setSelectedGroup(updatedGroup)
     setIsEdit(false)
   }
