@@ -62,34 +62,25 @@ export default function GroupDetails(props) {
   // <-------------------------------------------------->
   const [unitInfo, setUnitInfo] = useState()
   const [unitPlayers, setUnitPlayers] = useState()
-  const [usernames, setUsernames] = useState([])
-
+  const [playerNames, setPlayerNames] = useState([])
+  let playerName = []
+  let player_Id = props.player.id
   useEffect(() => {
+    let playerObjArray = []
     const getUnits = async () => {
-      let res = await axios.get(`${BASE_URL}/api/units/groups/${group_Id}`)
-      console.log(res.data)
-      setUnitPlayers(res.data)
+      let res = await axios.get(`${BASE_URL}/api/groups/players/names/${group_Id}`)
+      let playerArr = res.data[0].players
+      playerArr.map((playerObj) => {
+        playerObjArray.push(playerObj)
+      })
+      playerObjArray.forEach((Obj) => {
+        playerName.push(Obj.username)
+      })
+      setPlayerNames(playerName)
     }
     getUnits()
   }, [unitInfo])
 
-  useEffect(() => {
-    let playerNames = []
-    let array = []
-    const filterName = async () => {
-      if (unitPlayers) {
-        await unitPlayers.forEach((obj) => {
-          array.push(obj.playerId)
-        })
-        array.map(async (playerId) => {
-          let res = await axios.get(`${BASE_URL}/api/players/name/${playerId}`)
-          playerNames.push(res.data.username)
-          setUsernames(playerNames)
-        })
-      }
-    }
-    filterName()
-  }, [unitPlayers])
 
   const joinGroup = async () => {
     console.log('playerID information here:', props.player.id)
@@ -102,7 +93,8 @@ export default function GroupDetails(props) {
   }
 
   const leaveGroup = async () => {
-    await axios.delete(`${BASE_URL}/api/units/${group_Id}`)
+    await axios.delete(`${BASE_URL}/api/units/${group_Id}/${player_Id}`)
+    navigate('/groups')
   }
 
   const defaultPage = (
@@ -114,7 +106,7 @@ export default function GroupDetails(props) {
       <h4>Date: {props.selectedGroup.date.substring(0, 10)}</h4>
       <p>Description: {props.selectedGroup.description}</p>
 
-      <Players usernames={usernames} />
+      <Players usernames={playerNames} />
 
       <button onClick={joinGroup}>+Join Group+</button>
       <button onClick={leaveGroup}>-Leave Group-</button>
