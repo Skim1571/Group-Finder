@@ -196,6 +196,10 @@ header {
   }
 }
 
-.poster {
+.poster>.cardImage {
+  box-sizing: border-box;
+  padding: 5px;
+  border-radius: 10%;
+  width: 100%;
   opacity: .75;
 }
