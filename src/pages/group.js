@@ -3,7 +3,7 @@ import GroupCard from "../components/groupcard";
 export default function GroupPage({ player, groups, chooseGroup }) {
   return (
     <section className="group page">
-      <h1>Group Page</h1>
+      <h1>Groups</h1>
       <div>
         {groups.map((group) => (
           <div key={group.id}>

@@ -17,7 +17,7 @@ export default function Nav({ isLoggedIn, player, handleLogOut }) {
         <div>
           <NavLink to='/about'>About</NavLink>
           <NavLink to='/groupcreation/'>Group Creation</NavLink>
-          <NavLink to='/groups'>Group Page</NavLink>
+          <NavLink to='/groups'>Groups</NavLink>
           <NavLink onClick={handleLogOut} to="/">
             Sign Out
           </NavLink>
@@ -37,7 +37,7 @@ export default function Nav({ isLoggedIn, player, handleLogOut }) {
       <div className="other-links">
         <NavLink to='/about'>About</NavLink>
         <NavLink to='/register'>Sign Up</NavLink>
-        <NavLink to='/groups'>Group Page</NavLink>
+        <NavLink to='/groups'>Groups</NavLink>
       </div>
 
     </nav>
