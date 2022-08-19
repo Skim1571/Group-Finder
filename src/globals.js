@@ -1,5 +1,5 @@
 // const BASE_URL = ''
-const BASE_URL = "http://localhost:3003";
+const BASE_URL = "http://localhost:3001";
 
 module.exports = {
   BASE_URL,
