@@ -94,6 +94,7 @@ button {
   border-radius: 10%;
   padding: 0.4em;
   margin: 30px 20px 20px 20px;
+  animation: slideInFromBottom ease 3s;
 }
 .group button h1 {
 
