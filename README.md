@@ -59,7 +59,7 @@
 ![Image](public/sss1.png)
 
 #### Image 3
-![Image](public/sss3.png)
+![Image](public/ssss3.png)
 ---
 
 ### **_Future Updates_**
