@@ -1,22 +1,22 @@
-import { useState, useEffect } from 'react'
-import { GroupForm } from '../components/GroupForm'
-import axios from 'axios'
-import { BASE_URL } from '../globals'
-import { useNavigate, useParams } from 'react-router-dom'
-import Players from '../components/players'
+import { useState, useEffect } from "react";
+import { GroupForm } from "../components/GroupForm";
+import axios from "axios";
+import { BASE_URL } from "../globals";
+import { useNavigate, useParams } from "react-router-dom";
+import Players from "../components/players";
 
 export default function GroupDetails(props) {
-  let navigate = useNavigate()
-  const [isEdit, setIsEdit] = useState(false)
-  const [updatedGroup, setUpdatedGroup] = useState({})
-  let { group_Id } = useParams()
+  let navigate = useNavigate();
+  const [isEdit, setIsEdit] = useState(false);
+  const [updatedGroup, setUpdatedGroup] = useState({});
+  let { group_Id } = useParams();
 
   const handleChange = (event) => {
     setUpdatedGroup({
       ...updatedGroup,
-      [event.target.name]: event.target.value
-    })
-  }
+      [event.target.name]: event.target.value,
+    });
+  };
 
   const handleClick = () => {
     setUpdatedGroup({
@@ -25,28 +25,28 @@ export default function GroupDetails(props) {
       description: props.selectedGroup.description,
       groupSize: props.selectedGroup.groupSize,
       playerId: props.selectedGroup.playerId,
-      gameId: props.selectedGroup.gameId
-    })
-    setIsEdit(true)
-  }
+      gameId: props.selectedGroup.gameId,
+    });
+    setIsEdit(true);
+  };
 
   const onSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     let res = await axios.put(
       `${BASE_URL}/api/groups/${group_Id}`,
       updatedGroup
-    )
-    setUpdatedGroup(res)
-    props.setRender(true)
-    props.setSelectedGroup(updatedGroup)
-    setIsEdit(false)
-  }
+    );
+    setUpdatedGroup(res);
+    props.setRender(true);
+    props.setSelectedGroup(updatedGroup);
+    setIsEdit(false);
+  };
 
   const onDelete = async (event) => {
-    let res = await axios.delete(`${BASE_URL}/api/groups/${group_Id}`)
-    await props.setRender(true)
-    navigate('/groups')
-  }
+    let res = await axios.delete(`${BASE_URL}/api/groups/${group_Id}`);
+    await props.setRender(true);
+    navigate("/groups");
+  };
 
   let editPage = (
     <div>
@@ -57,16 +57,20 @@ export default function GroupDetails(props) {
         updatedGroup={updatedGroup}
       />
     </div>
-  )
+  );
 
   // <-------------------------------------------------->
+
   const [unitInfo, setUnitInfo] = useState([])
   const [playerIds, setPlayerIds] = useState([])
   const [usernames, setUsernames] = useState([])
 
   useEffect(() => {
+    let playerNames = [];
+    let array = [];
     const getUnits = async () => {
-      let res = await axios.get(`${BASE_URL}/api/groups/players/names/${group_Id}`)
+
+let res = await axios.get(`${BASE_URL}/api/groups/players/names/${group_Id}`)
       setPlayerIds(res.data)
     }
     getUnits()
@@ -100,20 +104,19 @@ export default function GroupDetails(props) {
   // }, [unitInfo])
 
 
-
   const joinGroup = async () => {
-    console.log('playerID information here:', props.player.id)
+    console.log("playerID information here:", props.player.id);
     let information = {
       playerId: props.player.id,
-      groupId: group_Id
-    }
-    let res = await axios.post(`${BASE_URL}/api/units`, information)
-    setUnitInfo(res.data)
-  }
+      groupId: group_Id,
+    };
+    let res = await axios.post(`${BASE_URL}/api/units`, information);
+    setUnitInfo(res.data);
+  };
 
   const leaveGroup = async () => {
-    await axios.delete(`${BASE_URL}/api/units/${group_Id}`)
-  }
+    await axios.delete(`${BASE_URL}/api/units/${group_Id}`);
+  };
 
   const defaultPage = (
     <div className="groupdetails page">
@@ -129,9 +132,9 @@ export default function GroupDetails(props) {
       <button onClick={joinGroup}>+Join Group+</button>
       <button onClick={leaveGroup}>-Leave Group-</button>
     </div>
-  )
+  );
 
   return (
     <div className="groupdetails page">{!isEdit ? defaultPage : editPage}</div>
-  )
+  );
 }

@@ -1,5 +1,5 @@
 {
-  "name": "group-finder",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -36,5 +36,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "## Date: 8/11/2022 ![Image1](https://images.squarespace-cdn.com/content/v1/5e1f818988a3ad55be25f040/1579628831177-LCJBPP1HBKY2L6HIEHGX/cover_photo_without_slogan.jpg)",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Skim1571/Group-Finder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Skim1571/Group-Finder/issues"
+  },
+  "homepage": "https://github.com/Skim1571/Group-Finder#readme"
 }
