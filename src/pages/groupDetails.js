@@ -84,7 +84,6 @@ export default function GroupDetails(props) {
 
 
   const joinGroup = async () => {
-    console.log('playerID information here:', props.player.id)
     let information = {
       playerId: props.player.id,
       groupId: group_Id
@@ -94,7 +93,7 @@ export default function GroupDetails(props) {
   }
 
   const leaveGroup = async () => {
-    await axios.delete(`${BASE_URL}/api/units/${group_Id}/${player_Id}`)
+    await axios.delete(`${BASE_URL}/api/players/names/${group_Id}/${player_Id}`)
     navigate('/groups')
   }
 

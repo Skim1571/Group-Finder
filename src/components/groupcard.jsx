@@ -9,17 +9,13 @@ export default function GroupCard({ chooseGroup, group }) {
     event.preventDefault()
     chooseGroup(group)
   }
-  console.log(gameId)
   useEffect(() => {
     const gameImage = async () => {
       let res = await axios.get(`${BASE_URL}/api/games/image/${gameId}`)
-      console.log(res.data.image)
       setGameImage(res.data.image)
     }
     gameImage()
   }, [])
-
-  console.log('image', gameImage)
 
   return (
     <div>
