@@ -60,49 +60,34 @@ export default function GroupDetails(props) {
   );
 
   // <-------------------------------------------------->
-
-  const [unitInfo, setUnitInfo] = useState([])
-  const [playerIds, setPlayerIds] = useState([])
-  const [usernames, setUsernames] = useState([])
+  const [unitInfo, setUnitInfo] = useState();
+  const [unitPlayers, setUnitPlayers] = useState();
+  const [usernames, setUsernames] = useState([]);
 
   useEffect(() => {
     let playerNames = [];
     let array = [];
     const getUnits = async () => {
+      let res = await axios.get(`${BASE_URL}/api/units/groups/${group_Id}`);
+      console.log(res.data);
+      setUnitPlayers(res.data);
+    };
 
-let res = await axios.get(`${BASE_URL}/api/groups/players/names/${group_Id}`)
-      setPlayerIds(res.data)
-    }
-    getUnits()
-  }, [])
-
-
-
-
-
-
-  // useEffect(() => {
-  //   const getUnits = async () => {
-  //     let res = await axios.get(`${BASE_URL}/api/units/groups/${group_Id}`)
-  //     setUnitPlayers(res.data)
-  //   }
-  //   const filterName = async () => {
-  //     getUnits()
-  //     let playerNames = []
-  //     let arr = []
-  //     unitPlayers.forEach((obj) => {
-  //       arr.push(obj.playerId)
-  //       console.log(arr)
-  //     })
-  //     arr.map(async (playerId) => {
-  //       let res = await axios.get(`${BASE_URL}/api/players/name/${playerId}`)
-  //       playerNames.push(res.data.username)
-  //       setUsernames(playerNames)
-  //     })
-  //   }
-  //   filterName()
-  // }, [unitInfo])
-
+    const filterName = async () => {
+      if (unitPlayers) {
+        await unitPlayers.forEach((obj) => {
+          array.push(obj.playerId);
+        });
+        array.map(async (playerId) => {
+          let res = await axios.get(`${BASE_URL}/api/players/name/${playerId}`);
+          playerNames.push(res.data.username);
+          setUsernames(playerNames);
+        });
+      }
+    };
+    getUnits();
+    filterName();
+  }, [unitInfo, group_Id]);
 
   const joinGroup = async () => {
     console.log("playerID information here:", props.player.id);

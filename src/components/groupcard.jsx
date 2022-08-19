@@ -1,5 +1,6 @@
 export default function GroupCard({ chooseGroup, group, selectedGroup }) {
 
+
   const handleSubmit = (event) => {
     event.preventDefault()
     chooseGroup(group)
