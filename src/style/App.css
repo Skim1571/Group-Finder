@@ -33,6 +33,7 @@ img {
   border-radius: 40%;
   animation: 3s ease-out 0s 1 slideInLeft;
 }
+
 /* p{
   padding-left: 500px;
   padding-right: 500px;
@@ -71,9 +72,17 @@ input {
   color: #d4af37;
   animation: slideInFromBottom ease 3s;
 }
+
 @keyframes slideInFromBottom {
-  from { transform: translateY(100px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 form {
@@ -96,16 +105,10 @@ button {
   margin: 30px 20px 20px 20px;
   animation: slideInFromBottom ease 3s;
 }
+
 .group button h1 {
 
   font-size: 20px;
-}
-
-.group {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(250px, 1fr));
-  grid-gap: 1em;
-  padding: 0.5em;
 }
 
 .groupdetails {
@@ -115,20 +118,23 @@ button {
 .about {
   margin-top: 300px;
 }
+
 ::placeholder {
   color: #f8dc80;
 }
-.groupCreation select  {
-background-color: transparent;
-color: #d4af37;
-cursor: inherit;
-border: 1px solid darkgoldenrod
+
+.groupCreation select {
+  background-color: transparent;
+  color: #d4af37;
+  cursor: inherit;
+  border: 1px solid darkgoldenrod
 }
 
- .active{
+.active {
   text-shadow: 2px 2px 5px rgb(255, 132, 31), 0 0 25px rgb(247, 177, 73);
 }
-input[type="date"] { 
+
+input[type="date"] {
   background: transparent;
   color: darkgoldenrod;
 }
@@ -141,14 +147,23 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(1);
 }
 
-.group button{
-width:300px;
-animation: slideInFromBottom ease 3s;
+.group button {
+  width: 300px;
+  animation: slideInFromBottom ease 3s;
 }
+
 @keyframes slideInFromBottom {
-  from { transform: translateY(100px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
+
 * {
   animation: fadeInAnimation ease 2s;
   animation-iteration-count: 1;
@@ -157,23 +172,25 @@ animation: slideInFromBottom ease 3s;
 
 @keyframes fadeInAnimation {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
+
   100% {
-      opacity: 1;
-   }
+    opacity: 1;
+  }
 }
 
 header {
 
   animation: 1s ease-out 0s 1 slideInLeft;
- 
-} 
+
+}
 
 @keyframes slideInLeft {
   from {
     transform: translateX(-100%);
   }
+
   to {
     transform: translateX(0);
   }

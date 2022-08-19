@@ -112,7 +112,7 @@ function App() {
     const postvar = { playerId: player.id, groupId: res.data.id }
     let newRes = await axios.post(`${BASE_URL}/api/units`, postvar)
     console.log(newRes)
-    setRender(true)
+    await setRender(true)
     navigate('/groups')
   }
 
