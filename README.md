@@ -72,6 +72,15 @@
 
 ### **_Credits_**
 
+#### Fall Flat Guy Image: https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.gamehype.co.uk%2Fwp-content%2Fuploads%2F2018%2F02%2Fhuman-fall-flat.jpg&f=1&nofb=1
+
+#### Valorant Image: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.bCFpv-c9gr_FDWFaF4ZSBQHaEK%26pid%3DApi&f=1
+
+#### Counter Strike Go Image: https://wallsdesk.com/wp-content/uploads/2016/08/Counter-Strike-Global-Offensive-Computer-Backgrounds.jpg
+
+#### Dota 2 Image: https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.techreviewer.co.uk%2Fwp-content%2Fuploads%2F2014%2F02%2FDota2.jpg&f=1&nofb=1
+
+#### Fortnite Image: https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic2.thegamerimages.com%2Fwordpress%2Fwp-content%2Fuploads%2F2020%2F07%2Ffortnite-revive.jpg&f=1&nofb=1
 
 ---
 
