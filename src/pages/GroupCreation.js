@@ -11,7 +11,10 @@ export const GroupCreation = ({ handleChange, onSubmit }) => {
         <select defaultValue="" name="gameId" onChange={handleChange}>
           <option value="" disabled hidden>Choose Game</option>
           <option value="1">Dota 2</option>
-          <option value="2">Counter Strike</option>
+          <option value="2">Counter Strike Go</option>
+          <option value="3">Fortnite</option>
+          <option value="4">Valorant</option>
+          <option value="5">Human Fall Flat</option>
         </select>
         {/* {optionList} */}
         <input
