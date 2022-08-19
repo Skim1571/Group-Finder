@@ -176,3 +176,6 @@ header {
     transform: translateX(0);
   }
 }
+.poster{
+  opacity: .9;
+}

@@ -1,149 +1,149 @@
-import { Routes, Route, useNavigate } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import { BASE_URL } from './globals'
-import axios from 'axios'
-import { Home } from './pages/Home'
-import AboutUs from './pages/about'
-import './style/App.css'
-import { Register } from './pages/Register'
-import Nav from './components/nav'
-import GroupPage from './pages/group'
-import GroupDetails from './pages/groupDetails'
-import { GroupCreation } from './pages/GroupCreation'
-import { GameCreation } from './pages/GameCreation'
-import { RegisterPlayer } from './services/Auth'
-import { CheckSession } from './services/Auth'
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { BASE_URL } from "./globals";
+import axios from "axios";
+import { Home } from "./pages/Home";
+import AboutUs from "./pages/about";
+import "./style/App.css";
+import { Register } from "./pages/Register";
+import Nav from "./components/nav";
+import GroupPage from "./pages/group";
+import GroupDetails from "./pages/groupDetails";
+import { GroupCreation } from "./pages/GroupCreation";
+import { GameCreation } from "./pages/GameCreation";
+import { RegisterPlayer } from "./services/Auth";
+import { CheckSession } from "./services/Auth";
 
 function App() {
-  const [player, setPlayer] = useState(null)
+  const [player, setPlayer] = useState(null);
   // initial States
   const initialRegFormState = {
-    username: '',
-    email: '',
-    discord: '',
-    passcode: ''
-  }
+    username: "",
+    email: "",
+    discord: "",
+    passcode: "",
+  };
   const initialGameFormState = {
-    gameName: '',
-    image: '',
-    groupSize: '',
-    description: ''
-  }
+    gameName: "",
+    image: "",
+    groupSize: "",
+    description: "",
+  };
 
   const initialGroupFormState = {
-    title: '',
-    date: '',
+    title: "",
+    date: "",
     groupsize: 0,
-    description: '',
-    gameId: null
-  }
+    description: "",
+    gameId: null,
+  };
 
   //  React State Section
-  const [regFormState, setRegFormState] = useState(initialRegFormState)
-  const [gameFormState, setGameFormState] = useState(initialGameFormState)
-  const [groupFormState, setGroupFormState] = useState(initialGroupFormState)
+  const [regFormState, setRegFormState] = useState(initialRegFormState);
+  const [gameFormState, setGameFormState] = useState(initialGameFormState);
+  const [groupFormState, setGroupFormState] = useState(initialGroupFormState);
   // pass this down to group page to map groups and get correct data
-  const [groups, setGroups] = useState([])
-  const [selectedGroup, setSelectedGroup] = useState()
-  const [render, setRender] = useState(false)
+  const [groups, setGroups] = useState([]);
+  const [selectedGroup, setSelectedGroup] = useState();
+  const [render, setRender] = useState(false);
   // Authentication States
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   //  Functions Section
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   useEffect(() => {
     async function getGroups() {
-      const groupInfo = await axios.get(`${BASE_URL}/api/groups`)
-      setGroups(groupInfo.data)
+      const groupInfo = await axios.get(`${BASE_URL}/api/groups`);
+      setGroups(groupInfo.data);
     }
-    getGroups()
-  }, [render])
+    getGroups();
+  }, [render]);
 
   // Registration Form EventListeners
   const regFormHandleChange = async (event) => {
     await setRegFormState({
       ...regFormState,
-      [event.target.name]: event.target.value
-    })
-  }
+      [event.target.name]: event.target.value,
+    });
+  };
 
   const regFormHandleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     await RegisterPlayer({
       username: regFormState.username,
       email: regFormState.email,
       discord: regFormState.discord,
-      password: regFormState.passcode
-    })
+      password: regFormState.passcode,
+    });
     // setRegFormState(initialRegFormState)
-    navigate(`/`)
-  }
+    navigate(`/`);
+  };
 
   // Game Form EventListeners
   const gameFormHandleChange = async (event) => {
     await setGameFormState({
       ...gameFormState,
-      [event.target.name]: event.target.value
-    })
-  }
+      [event.target.name]: event.target.value,
+    });
+  };
 
   const gameFormHandleSubmit = async (event) => {
-    event.preventDefault()
-    let res = await axios.post(`${BASE_URL}/api/games`, gameFormState)
-    setGameFormState(initialGameFormState)
-  }
+    event.preventDefault();
+    let res = await axios.post(`${BASE_URL}/api/games`, gameFormState);
+    setGameFormState(initialGameFormState);
+  };
 
   // Group Form EventListeners
   const groupFormHandleChange = async (event) => {
-    let playerId = player.id
+    let playerId = player.id;
     setGroupFormState({
       playerId,
       ...groupFormState,
-      [event.target.name]: event.target.value
-    })
-  }
+      [event.target.name]: event.target.value,
+    });
+  };
 
   const groupFormHandleSubmit = async (event) => {
-    event.preventDefault()
-    let res = await axios.post(`${BASE_URL}/api/groups`, groupFormState)
-    console.log(res)
-    setGroupFormState(res)
-    const postvar = { playerId: player.id, groupId: res.data.id }
-    let newRes = await axios.post(`${BASE_URL}/api/units`, postvar)
-    console.log(newRes)
-    setRender(true)
-    navigate('/groups')
-  }
+    event.preventDefault();
+    let res = await axios.post(`${BASE_URL}/api/groups`, groupFormState);
+    console.log(res);
+    setGroupFormState(res);
+    const postvar = { playerId: player.id, groupId: res.data.id };
+    let newRes = await axios.post(`${BASE_URL}/api/units`, postvar);
+    console.log(newRes);
+    setRender(true);
+    navigate("/groups");
+  };
 
   const checkToken = async () => {
-    const playerSession = await CheckSession()
-    setPlayer(playerSession)
+    const playerSession = await CheckSession();
+    setPlayer(playerSession);
     setGroupFormState({
-      ...groupFormState
-    })
-    setIsLoggedIn(true)
+      ...groupFormState,
+    });
+    setIsLoggedIn(true);
     //If a token exists, sends token to localStorage to persist logged in user
-  }
+  };
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token");
     if (token) {
-      checkToken()
+      checkToken();
     }
-  }, [isLoggedIn])
+  }, [isLoggedIn]);
 
   const handleLogOut = () => {
     //Reset all auth related state and clear localStorage
-    setPlayer(null)
-    setIsLoggedIn(false)
-    localStorage.clear()
-  }
+    setPlayer(null);
+    setIsLoggedIn(false);
+    localStorage.clear();
+  };
 
   const chooseGroup = (selected) => {
-    setSelectedGroup(selected)
-    navigate(`/groups/${selected.id}`)
-  }
+    setSelectedGroup(selected);
+    navigate(`/groups/${selected.id}`);
+  };
 
   return (
     <div className="App">
@@ -211,13 +211,14 @@ function App() {
               <GroupCreation
                 handleChange={groupFormHandleChange}
                 onSubmit={groupFormHandleSubmit}
+                selectedGroup={selectedGroup}
               />
             }
           />
         </Routes>
       </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
