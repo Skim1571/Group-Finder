@@ -40,10 +40,6 @@ a {
   margin: 0px 12.5px 0px 0px;
 }
 
-.home-page {
-  display: flex;
-  flex-direction: column;
-}
 
 h1 {
   font-size: 50px;
@@ -70,9 +66,12 @@ input {
   padding: 0.5em;
   margin-top: 40px;
   color: #d4af37;
- 
+  animation: slideInFromBottom ease 3s;
 }
-
+@keyframes slideInFromBottom {
+  from { transform: translateY(100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
 
 form {
   padding: 1em;
@@ -83,11 +82,6 @@ form {
   width: 40em;
   margin: 40px auto;
   border-radius: 40%;
-  animation: slideInFromBottom ease 3s;
-}
-@keyframes slideInFromBottom {
-  from { transform: translateY(100px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
 }
 
 button {
@@ -98,15 +92,16 @@ button {
   padding: 0.4em;
   margin: 30px 20px 20px 20px;
 }
-
 .group button h1 {
 
   font-size: 20px;
 }
 
 .group {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  grid-gap: 1em;
+  padding: 0.5em;
 }
 
 .groupdetails {

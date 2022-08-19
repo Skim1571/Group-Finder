@@ -28,7 +28,9 @@
 ### **_Technologies Used_**
 
 - React
-
+- CSS
+- HTML
+- Javascript
 ---
 
 ### **_Getting Started_**
@@ -49,13 +51,13 @@
 ### **_Screenshots_**
 
 #### Image 1
-
+![Image](public/ss3.png)
 
 #### Image2
-![Background_Img]()
+![Image](public/ss4.png)
 
 #### Image 3
-![HomePage]()
+![Image](public/ss5.png)
 
 ---
 
@@ -69,7 +71,6 @@
 
 ### **_Credits_**
 
-#### Image 1:
 ---
 
 Footer
