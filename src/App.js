@@ -105,16 +105,15 @@ function App() {
   };
 
   const groupFormHandleSubmit = async (event) => {
-    event.preventDefault();
-    let res = await axios.post(`${BASE_URL}/api/groups`, groupFormState);
-    console.log(res);
-    setGroupFormState(res);
-    const postvar = { playerId: player.id, groupId: res.data.id };
-    let newRes = await axios.post(`${BASE_URL}/api/units`, postvar);
-    console.log(newRes);
-    setRender(true);
-    navigate("/groups");
-  };
+
+    event.preventDefault()
+    let res = await axios.post(`${BASE_URL}/api/groups`, groupFormState)
+    setGroupFormState(res)
+    const postvar = { playerId: player.id, groupId: res.data.id }
+    let newRes = await axios.post(`${BASE_URL}/api/units`, postvar)
+    setRender(true)
+    navigate('/groups')
+  }
 
   const checkToken = async () => {
     const playerSession = await CheckSession();
