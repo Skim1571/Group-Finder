@@ -63,6 +63,7 @@ export default function GroupDetails(props) {
   const [unitInfo, setUnitInfo] = useState()
   const [unitPlayers, setUnitPlayers] = useState()
   const [playerNames, setPlayerNames] = useState([])
+
   let playerName = []
   let player_Id = props.player.id
   useEffect(() => {

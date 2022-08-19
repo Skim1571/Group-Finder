@@ -50,29 +50,28 @@
 
 ### **_Screenshots_**
 
-#### Image 1
-![Image](public/ss3.png )
 
-#### Image2
+
+#### Image1
 ![Image](public/ss4.png )
 
-#### Image 3
-![Image](public/ss5.png)
-#### Image 4
+#### Image 2
 ![Image](public/sss1.png)
-#### Image 5
-![Image](public/sss2.png)
+
+#### Image 3
+![Image](public/sss3.png)
 ---
 
 ### **_Future Updates_**
 
-- [ ] 
-- [ ] 
-- [ ] 
+- [ ] Link to RawG API 
+- [ ] Home Page Personal Group Cards
+- [ ] Group Size Limiter
 
 ---
 
 ### **_Credits_**
+
 
 ---
 
