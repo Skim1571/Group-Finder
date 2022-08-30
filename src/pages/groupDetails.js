@@ -93,7 +93,7 @@ export default function GroupDetails(props) {
   }
 
   const leaveGroup = async () => {
-    await axios.delete(`${BASE_URL}/api/players/names/${group_Id}/${player_Id}`)
+    await axios.delete(`${BASE_URL}/api/units/${group_Id}/${player_Id}`)
     navigate('/groups')
   }
 
